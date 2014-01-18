@@ -18,14 +18,18 @@ if (mysqli_connect_error()) {
             . mysqli_connect_error());
 }
 
-$table_exist = $db_con->query('SELECT 1 from as_user');
+$entry_exist = $db_con->query('SELECT email FROM as_user WHERE email="'. $email .'"');
+$row_entry = $entry_exist->fetch_assoc();
+$email_check = $row_entry['email'];
 
-if ($table_exist) {  
+if (!$email_check) {  
 
 $db_con->query('INSERT INTO as_user (username, password, email, gender, register_date, user_state) VALUES ( "'. $name .'", "'. $pass_hash .'", "'. $email .'", "'. $gender .'", '. time() .', "email_confirm")');
 echo "User has been created, an email has been sent to " . $email . ". Please confirm.";
 
 } else {
+
+echo "Email already exists!";
 
 }
 

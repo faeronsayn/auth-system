@@ -32,7 +32,7 @@ if ($table_exist) {
                     <div class="form-group">
                         <label for="input-name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-name" placeholder="Name">
+                            <input maxlength="50" type="text" class="form-control" id="input-name" placeholder="Name">
                         </div>
                     </div>
         
@@ -95,17 +95,55 @@ if ($table_exist) {
 		
 		$('#waiting').addClass('loading');
 		
+		if (!password) {
+				$('#input-pass').parent().removeClass('has-success');
+				$('#input-pass').parent().addClass('has-error');
+		} else {
+				$('#input-pass').parent().removeClass('has-error');
+				$('#input-pass').parent().addClass('has-success');
+		}
+		
+		if (!password_confirm) {
+				$('#input-pass-confirm').parent().removeClass('has-success');
+				$('#input-pass-confirm').parent().addClass('has-error');
+		}
+		
+		if (!gender) {
+				$('.btn-group').parent().removeClass('has-success');
+				$('.btn-group').parent().addClass('has-error');
+		} else {
+				$('.btn-group').parent().removeClass('has-error');
+				$('.btn-group').parent().addClass('has-success');
+		}
+		
+		if (!name) {
+				$('#input-name').parent().removeClass('has-success');
+				$('#input-name').parent().addClass('has-error');
+		} else {
+				$('#input-name').parent().removeClass('has-error');
+				$('#input-name').parent().addClass('has-success');
+		}
+		
+		if (!email) {
+				$('#input-email').parent().removeClass('has-success');
+				$('#input-email').parent().addClass('has-error');
+		} else {
+				$('#input-email').parent().removeClass('has-error');
+				$('#input-email').parent().addClass('has-success');
+		}
+		
 		if (password != password_confirm) {
 			
-			password_confirm = $('#input-pass-confirm').parent().addClass('has-error');
+			$('#input-pass-confirm').parent().addClass('has-error'); // If passwords don't match, then throw an error
 			jQuery('#notify-user').html('Passwords don\'t match :(');
 			$('#waiting').removeClass('loading');
-							
+								
 		} else if (gender && password && password_confirm && name && email) {
+			
+			$('#input-pass-confirm').parent().removeClass('has-error');
+			$('#input-pass-confirm').parent().addClass('has-success');
 						
-			jQuery.post("functions/register-user.php", {gender:gender, password:password, name:name, email:email}, function(data) {
-				//this is your response data from serv
-				$('#waiting').removeClass('loading');
+			jQuery.post("functions/register-user.php", {gender:gender, password:password, name:name, email:email}, function(data) {				
 				console.log(data);
 				jQuery('#notify-user').html(data);								
 			});
