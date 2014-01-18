@@ -24,7 +24,7 @@ if ($table_exist) {
 ?>
 
 
-    <div class="panel panel-success" style="max-width: 500px; margin: 0 auto; padding: 0 25px;">
+    <div class="panel panel-success" style="max-width: 500px; margin: 0 auto;">
     	<div class="panel-heading">Registration Form</div>
         
         <div class="panel-body">
@@ -57,30 +57,22 @@ if ($table_exist) {
                     <hr />
                     
                     <div class="form-group">
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="gender" id="male" value="Male">
-                            Male
+                        <label class="col-sm-2 control-label">Gender</label>
+                        <div class="btn-group col-sm-10" data-toggle="buttons">
+                          <label class="btn btn-default">
+                            <input type="radio" name="gender" id="male" value="Male"> Male
                           </label>
-                        </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="gender" id="female" value="Female">
-                            Female
+                          <label class="btn btn-default">
+                            <input type="radio" name="gender" id="female" value="Female"> Female
                           </label>
-                        </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="gender" id="unspecified" value="" checked>
-                            Unspecified
+                          <label class="btn btn-default">
+                            <input type="radio" name="gender" id="unspecified" value="Unspecified"> Unspecified
                           </label>
-                        </div>
+                        </div>                          
                     </div>
                     
-                    <div class="form-group">    		
-                        <button id="register" type="button" class="btn btn-primary">Register</button><div id="waiting"></div>
+                    <div class="form-group" style="text-align: center;">    		
+                        <button id="register" type="button" class="btn btn-primary btn-lg">Register</button><div id="waiting"></div>
                     </div>
                 </div>
             </form>
@@ -90,6 +82,8 @@ if ($table_exist) {
 <?php include 'footer.php'; ?>
 
 <script type="text/javascript">
+
+	//$('input[name="gender"]').button()
 
 	$('#register').click(function() { 
 	
@@ -102,15 +96,24 @@ if ($table_exist) {
 		$('#waiting').addClass('loading');
 		
 		if (password != password_confirm) {
+			
 			password_confirm = $('#input-pass-confirm').parent().addClass('has-error');
-			jQuery('#notify-user').html('Passwords don\'t match :(');				
-		} else {			
+			jQuery('#notify-user').html('Passwords don\'t match :(');
+			$('#waiting').removeClass('loading');
+							
+		} else if (gender && password && password_confirm && name && email) {
+						
 			jQuery.post("functions/register-user.php", {gender:gender, password:password, name:name, email:email}, function(data) {
 				//this is your response data from serv
 				$('#waiting').removeClass('loading');
 				console.log(data);
 				jQuery('#notify-user').html(data);								
 			});
+		
+		} else {
+			 
+			$('#waiting').removeClass('loading');
+			$('#notify-user').html('Please fill in all the fields');
 		
 		}
 	
