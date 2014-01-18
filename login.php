@@ -40,7 +40,7 @@ if ($table_exist) {
 		</div>
 	</div>
     
-    <div id="login-notify" class="login-notify"></div>
+    <div class="login-notify"><span class="glyphicon"></span></div>
 
 <?php
 
@@ -66,14 +66,23 @@ if ($table_exist) {
 				if (data == 'true') { 
 				
 					$('#notify-user').html('Login successful');
-					$('#login-notify').removeClass('sad');
-					$('#login-notify').addClass('happy');
+					$('#notify-user').removeClass('fail').addClass('success');
+					$('.panel.panel-default').css('display', 'none'); // Remove the login box since the user has logged in
+					$('.glyphicon').removeClass('glyphicon-thumbs-down').addClass('glyphicon-thumbs-up');
+					setTimeout(function() {
+						$('#notify-user').removeClass('success');
+        				$('#notify-user').html('');
+					}, 2000)
+					
 				
 				} else { 
 				
-					$('#notify-user').html('Login failed, please check email and password.');
-					$('#login-notify').removeClass('happy');
-					$('#login-notify').addClass('sad');
+					$('#notify-user').html('Login failed, email or password is incorrect.');
+					$('#notify-user').removeClass('success').addClass('fail');
+					setTimeout(function() {
+						$('#notify-user').removeClass('fail');
+    				}, 3000)
+					$('.glyphicon').removeClass('glyphicon-thumbs-up').addClass('glyphicon-thumbs-down');
 					
 				
 				}

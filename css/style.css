@@ -1,0 +1,44 @@
+/* General Style sheet */
+
+#notify-user:empty {
+	height: 0;
+	padding: 0;
+}
+
+#notify-user {
+	position: fixed;
+	z-index: 1031;
+	width: 100%;
+	background-color: rgba(0,0,0, 0.8);
+	color: #fff;
+	font: 23px Myriad Pro, sans-serif;
+	transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	text-align: center;
+	padding: 25px;
+}
+
+	#notify-user.success {
+		background-color: rgba(45, 110, 47, 1);
+	}
+	
+	#notify-user.fail {
+		background-color: rgba(141, 4, 4, 1);
+	}
+
+.login-notify {
+	display: block;
+	text-align: center;	
+}
+
+.glyphicon {
+	font-size: 200px;
+	padding: 20px 0;
+	transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-webkit-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;	
+}
+
