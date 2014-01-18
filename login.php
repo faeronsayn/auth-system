@@ -13,24 +13,32 @@ if (mysqli_connect_error()) {
 $table_exist = $db_con->query('SELECT 1 from as_user');
 
 if ($table_exist) {  
-?> 
-	<form class="form-horizontal" role="form">
-        <div class="form-group">
-            <label for="input-email" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="input-email" placeholder="Email">
-            </div>
-            
-            <hr />
+?>
+    <div class="panel panel-default" style="max-width: 500px; margin: 0 auto;">
+    	<div class="panel-heading">Login Form</div>
         
-            <label for="input-pass" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-5">
-                <input type="password" class="form-control" id="input-pass" placeholder="Password">
-            </div>
-            
-            <button id="login" type="button" class="btn btn-primary">Login</button><div id="waiting">
-       	</div>
-	</form>
+        <div class="panel-body"> 
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="input-email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="input-email" placeholder="Email">
+                    </div>
+               	</div>
+                
+                <div class="form-group">
+                    <label for="input-pass" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="input-pass" placeholder="Password">
+                    </div>
+                </div>
+                
+                <div class="form-group" style="text-align: center;">
+                    <button id="login" type="button" class="btn btn-primary btn-lg">Login</button><div id="waiting"></div>
+               	</div>
+            </form>
+		</div>
+	</div>
     
     <div id="login-notify" class="login-notify"></div>
 
