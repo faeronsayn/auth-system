@@ -23,57 +23,69 @@ if ($table_exist) {
 
 ?>
 
-	<h2>Registration Form</h2>
-	<form class="form-horizontal" role="form">
-        <div class="form-group">
-    
-            <label for="input-name" class="col-sm-2 control-label">Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="input-name" placeholder="Name">
-            </div>
-        
-            <label for="input-email" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="input-email" placeholder="Email">
-            </div>
-            
-            <hr />
-        
-            <label for="input-pass" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-5">
-                <input type="password" class="form-control" id="input-pass" placeholder="Password">
-            </div>
-            <div class="col-sm-5">
-                <input type="password" class="form-control" id="input-pass-confirm" placeholder="Confirm password">
-            </div>
-            
-            <hr />
-            
-            <div class="radio">
-              <label>
-                <input type="radio" name="gender" id="male" value="Male">
-                Male
-              </label>
-            </div>
-            
-            <div class="radio">
-              <label>
-                <input type="radio" name="gender" id="female" value="Female">
-                Female
-              </label>
-            </div>
-            
-            <div class="radio">
-              <label>
-                <input type="radio" name="gender" id="unspecified" value="" checked>
-                Unspecified
-              </label>
-            </div>
-    		
-            <button id="register" type="button" class="btn btn-primary">Register</button><div id="waiting"></div>
-        </div>
-	</form>
 
+    <div class="panel panel-success" style="max-width: 500px; margin: 0 auto; padding: 0 25px;">
+    	<div class="panel-heading">Registration Form</div>
+        
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="input-name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="input-name" placeholder="Name">
+                        </div>
+                    </div>
+        
+                    <div class="form-group">            
+                        <label for="input-email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="input-email" placeholder="Email">
+                        </div>
+                    </div>
+                    
+                    <hr />
+                    <div class="form-group">        
+                        <label for="input-pass" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="input-pass" placeholder="Password">
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="input-pass-confirm" placeholder="Confirm password">
+                        </div>
+                    </div>
+                    
+                    <hr />
+                    
+                    <div class="form-group">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="gender" id="male" value="Male">
+                            Male
+                          </label>
+                        </div>
+                        
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="gender" id="female" value="Female">
+                            Female
+                          </label>
+                        </div>
+                        
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="gender" id="unspecified" value="" checked>
+                            Unspecified
+                          </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">    		
+                        <button id="register" type="button" class="btn btn-primary">Register</button><div id="waiting"></div>
+                    </div>
+                </div>
+            </form>
+		</div>
+	</div>
 
 <?php include 'footer.php'; ?>
 
@@ -90,8 +102,8 @@ if ($table_exist) {
 		$('#waiting').addClass('loading');
 		
 		if (password != password_confirm) {
-			password_confirm = $('#input-pass-confirm').adddClass('button-fail');
-			jQuery('#notify-user').html(data);				
+			password_confirm = $('#input-pass-confirm').parent().addClass('has-error');
+			jQuery('#notify-user').html('Passwords don\'t match :(');				
 		} else {			
 			jQuery.post("functions/register-user.php", {gender:gender, password:password, name:name, email:email}, function(data) {
 				//this is your response data from serv

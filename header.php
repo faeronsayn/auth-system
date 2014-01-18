@@ -15,8 +15,6 @@ include 'as-config.php';
 
 	<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
     	<div class="container">
-        
-        	<nav class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
@@ -39,7 +37,6 @@ include 'as-config.php';
                         <li><a href="register.php">Register</a></li>
                     </ul>
                 </div>
-			</nav>
             
         </div>
 	</header>
