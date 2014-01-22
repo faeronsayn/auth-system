@@ -1,6 +1,8 @@
 <?php 
 
 // Authentication System config file 
+// Change file name to as-config.php when finished with entering database details
+
 
 // Database Settings here
 
